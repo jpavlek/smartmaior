@@ -1,0 +1,2 @@
+# smartmaior
+Initial repo
