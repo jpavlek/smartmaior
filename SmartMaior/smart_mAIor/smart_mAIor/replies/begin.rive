@@ -1,0 +1,67 @@
+! version = 2.0
+
+// Bot variables
+! var name = Milan
+! var age  = 55
+! var position  = Gradonacelnik
+
+! array services = temperature
+
+// Substitutions
+! sub kaj     = sta
+! sub kak     = kako
+! sub ko     = tko
+
++ *
+- Idemo delati!{weight=1}
+- Jel mogu učinit nesto za vas?{weight=10}
+
++ (zovem se|bok) *
+- Drago mi je <star2><set name=<star2>>, kaj mogu ucinit za tebe?
+
++ [*] vrijeme [*] {weight=1}
+- Pada lagana kisica.
+
++ * sljedeci *
+- Sljedeci <star2> bit ce suncano i toplo!
+
++ [*] jel hladno [*]
+- Nije, <call>temperature</call> stupnja su.
+
++ google *
+- Google search: <a href="http://google.com/search?q=<star>">Click Here</a>
+
++ [*] kako se zovem
+- Zoveš se <get name>
+
++ zovem se *
+- Drago mi je, <star><set name=<star>>
+
++ kako se zoves
+- zovem se <bot name>
+
++ hello *
+- Hello, human!
+- hi
+
+> object sum python
+	import proba
+	a = float(args[0])
+	b = float(args[1])
+	s = proba.zbroj(a,b)
+	return str(s)
+< object
+
+> object reverse python
+	msg = " ".join(args)
+	return msg[::-1]
+< object
+
++ reverse *
+- Reversed <call>reverse <star></call>
+
++ zbroj * i *
+- rezultat je: <call>sum <star1> <star2></call>
+
++ [*] (temperatura|temo) [*]
+- Trenutna temperatura je: <call>temperature</call>
